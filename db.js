@@ -1,19 +1,39 @@
+// backend/db.js
 require('dotenv').config();
-const mysql = require('mysql2');
+const { Client } = require('pg');
 
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
-connection.connect((err) => {
+client.connect(err => {
   if (err) {
-    console.error('Error de conexión:', err);
-    return;
+    console.error('Error de conexión a Postgres:', err.stack);
+  } else {
+    console.log('Conectado a Postgres en Render');
   }
-  console.log('Conectado a MySQL');
 });
 
-module.exports = connection;
+module.exports = client;
+
+// //backend/db.js
+// require('dotenv').config();
+// const mysql = require('mysql2');
+
+// const connection = mysql.createConnection({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME
+// });
+
+// connection.connect((err) => {
+//   if (err) {
+//     console.error('Error de conexión:', err);
+//     return;
+//   }
+//   console.log('Conectado a MySQL');
+// });
+
+// module.exports = connection;
