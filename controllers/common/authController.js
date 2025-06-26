@@ -1,6 +1,6 @@
 // controllers/common/authController.js
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const jwt    = require('jsonwebtoken');
 const { getUserByCedula } = require('../../models/common/authModel');
 
 async function login(req, res) {
@@ -20,13 +20,13 @@ async function login(req, res) {
       return res.status(401).json({ error: 'Cédula o contraseña incorrecta' });
     }
 
-    // Payload con id y rol
     const payload = { id: user.id, rol: user.rol };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '2h' });
 
     res.json({ token });
+
   } catch (err) {
-    console.error('Error en login:', err);
+    console.error('Error en login:', err.stack || err);
     res.status(500).json({ error: 'Error interno al iniciar sesión' });
   }
 }

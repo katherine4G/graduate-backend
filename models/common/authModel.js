@@ -4,20 +4,21 @@ const client = require('../../db');
 async function getUserByCedula(cedula) {
   const sql = `
     SELECT 
-      "IdUser"   AS id,
-      "FirstName",
-      "LastName1",
-      "LastName2",
-      "Password" AS hash,
-      "IdRole"   AS rol
-    FROM "Users"
-    WHERE "IdentityNumber" = $1
+      iduser   AS id,
+      firstname,
+      lastname1,
+      lastname2,
+      password AS hash,
+      idrole   AS rol
+    FROM users
+    WHERE identitynumber = $1
   `;
   const { rows } = await client.query(sql, [cedula]);
   return rows[0] || null;
 }
 
 module.exports = { getUserByCedula };
+
 
 // // models/authModel.js
 // const db = require('../../db');
