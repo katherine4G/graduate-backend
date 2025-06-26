@@ -9,8 +9,5 @@
     "mysql2": "^3.14.1",
     "nodemailer": "^7.0.3",
     "pdfkit": "^0.17.1"
-  },
-  "scripts": {
-    "start": "node app.js"
   }
 }

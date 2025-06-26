@@ -14,3 +14,4 @@ npm-debug.log*
 
 # Build (si usás build tools o TypeScript luego)
 dist/
+.vercel

@@ -1,23 +1,23 @@
-version: '3'
-services:
-  db:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: sistema_graduados
-    # ports:
-    #   - "3306:3306"
+# version: '3'
+# services:
+#   db:
+#     image: mysql:8
+#     environment:
+#       MYSQL_ROOT_PASSWORD: 1234
+#       MYSQL_DATABASE: sistema_graduados
+#     # ports:
+#     #   - "3306:3306"
 
-  web:
-    build: .
-    command: node app.js
-    environment:
-      DB_HOST: db
-      DB_USER: root
-      DB_PASSWORD: 1234
-      DB_NAME: sistema_graduados
-      PORT: 10000
-    ports:
-      - "10000:10000"
-    depends_on:
-      - db
+#   web:
+#     build: .
+#     command: node app.js
+#     environment:
+#       DB_HOST: db
+#       DB_USER: root
+#       DB_PASSWORD: 1234
+#       DB_NAME: sistema_graduados
+#       PORT: 10000
+#     ports:
+#       - "10000:10000"
+#     depends_on:
+#       - db
